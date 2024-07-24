@@ -1,0 +1,46 @@
+{
+  "name": "workshop-manual-a11y-testing",
+  "version": "1.0.0",
+  "description": "A repo of exercises for the Testing Accessibility workshop: Manual Accessibility Testing & Tools",
+  "scripts": {
+    "start": "parcel index.html exercise1-keyboard exercise2-devtools exercise3-extensions exercise4-magnification exercise5-screenreader --no-source-maps",
+    "build": "parcel build index.html exercise1-keyboard/index.html exercise2-devtools/index.html exercise3-extensions/index.html exercise4-magnification/index.html exercise5-screenreader/index.html --no-source-maps"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/testing-accessibility/workshop-manual-a11y-testing.git"
+  },
+  "keywords": [
+    "accessibility",
+    "javascript",
+    "html",
+    "css",
+    "web",
+    "development",
+    "testing"
+  ],
+  "author": "Marcy Sutton",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/testing-accessibility/workshop-manual-a11y-testing/issues"
+  },
+  "homepage": "https://github.com/testing-accessibility/workshop-manual-a11y-testing#readme",
+  "dependencies": {
+    "babel-plugin-transform-glob-import": "^1.0.1",
+    "sass-loader": "^14"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.6",
+    "@babel/preset-env": "^7.24.6",
+    "@parcel/resolver-glob": "^2.12.0",
+    "@parcel/transformer-sass": "^2.12.0",
+    "babel-jest": "^29.7.0",
+    "babel-loader": "^9.1.3",
+    "copy-webpack-plugin": "12",
+    "parcel": "^2.12.0",
+    "posthtml-include": "^2.0.1"
+  },
+  "alias": {
+    "images": "./images"
+  }
+}
