@@ -1,32 +1,46 @@
+const ACTIVE_CLASS = 'active';
+
 function load() {
-    const menuItems = Array.from(document.querySelectorAll('.megamenu-navitem'))
-    const submenus = Array.from(document.querySelectorAll('.megamenu-section'))
+    // Get all mega menus
+    let currentActiveItemIndex = -1;
+    const megaMenuList = document.querySelectorAll('.megamenu-section');
+    // Open submenus on button click
 
-    function resetSubmenus(event) {
-        var activeSubmenu = document.querySelector('.megamenu-section.active')
-        if (activeSubmenu && !activeSubmenu.contains(event.target)) {
-            activeSubmenu.classList.remove('active')
-        }
-    }
+    megaMenuList.forEach((megaMenu, index) => {
+        const currentMenuButton = megaMenu.querySelector('.megamenu-navitem');
 
-    menuItems.forEach((menuItem, index) => {
-        let parentElement = menuItem.parentNode
-        menuItem.addEventListener('click', function(event) {
-            console.log(menuItem)
-            resetSubmenus(event)
+        currentMenuButton.addEventListener('click', () => {
+            megaMenu.classList.toggle(ACTIVE_CLASS);
 
-            // Add active menu for the item clicked
-            if(!parentElement.classList.contains('active')) {
-                parentElement.classList.add('active')
-
-            } else {
-                parentElement.classList.remove('active')
+            if (currentActiveItemIndex !== -1 && currentActiveItemIndex !== index) {
+                megaMenuList[currentActiveItemIndex].classList.remove(ACTIVE_CLASS);
             }
-        })
-    })
 
-    document.addEventListener('click', (event) => {
-        resetSubmenus(event)
-    })
+            currentActiveItemIndex = currentActiveItemIndex === index
+                ? -1
+                : index;
+        });
+    });
+
+    window.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape' || currentActiveItemIndex === -1) {
+            return;
+        };
+
+        const activeMenu = megaMenuList[currentActiveItemIndex];
+        const activeMenuButton = activeMenu.querySelector('.megamenu-navitem');
+
+        console.log('Escape clicked');
+        megaMenuList[currentActiveItemIndex].classList.remove(ACTIVE_CLASS);
+        activeMenuButton.focus();
+        currentActiveItemIndex = -1;
+    });
+
+    document.addEventListener('click', () => {})
+
+    // Close submenu on Escape button if one is open
+
+    // Close submenu if one is open on outside click
 }
+
 document.addEventListener('DOMContentLoaded', load)
